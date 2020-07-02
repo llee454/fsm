@@ -1,0 +1,9 @@
+[submodule "kami-model/Kami"]
+	path = kami-model/Kami
+	url = https://github.com/llee454/Kami.git
+[submodule "kami-model/bbv"]
+	path = kami-model/bbv
+	url = https://github.com/mit-plv/bbv.git
+[submodule "kami-model/coq-record-update"]
+	path = kami-model/coq-record-update
+	url = https://github.com/tchajed/coq-record-update.git
