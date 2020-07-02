@@ -1,6 +1,9 @@
 digraph example {
   node [shape = circle]
   0 [shape = doublecircle]
+  nil [label= "", shape=none,height=.0,width=.0]
+
+  nil -> 0 [label = "λ"]
   0 -> 0 [label = "0"]
   0 -> 1 [label = "1"]
   1 -> 2 [label = "0"]
