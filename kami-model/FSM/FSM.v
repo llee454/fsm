@@ -49,6 +49,14 @@ Definition FSMMod : Mod :=
     Rule "sendOutput" :=
       Read state : State <- stateReg;
       Call "sendOutput" (#state == $StateMod0 : Bool);
+      Retv with
+
+    Rule "reset" :=
+      Call reset : Bool <- "reset" ();
+      If #reset
+        then
+          Write stateReg : State <- $StateMod0;
+          Retv
       Retv
   }).
 

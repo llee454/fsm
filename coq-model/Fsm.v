@@ -10,7 +10,7 @@ Require Import List.
 Require Import Lia.
 Import ListNotations.
 Import Nat.
-Require Import Aux.
+Require Import Fsm.Aux.
 
 (* Represents finite state machines *)
 Record FSM : Type := {

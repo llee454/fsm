@@ -10,8 +10,8 @@ Require Import List.
 Require Import Lia.
 Import ListNotations.
 Import Nat.
-Require Import Fsm.
-Require Import Aux.
+Require Import Fsm.Fsm.
+Require Import Fsm.Aux.
 
 Inductive Bit : Set := Zero | One.
 
