@@ -8,15 +8,15 @@ Require Import Kami.All.
 Require Import List.
 Import ListNotations.
 
+Open Scope kami_expr.
+Open Scope kami_action.
+
 Definition StateMod0 := 0.
 Definition StateMod1 := 1.
 Definition StateMod2 := 2.
 Definition stateSz := 2.
 Definition State := Bit stateSz.
 Definition stateReg := "state".
-
-Open Scope kami_expr.
-Open Scope kami_action.
 
 Section ty.
   Variable ty : Kind -> Type.
@@ -35,28 +35,18 @@ End ty.
 Definition FSMMod : Mod :=
   Base (MODULE {
     Register stateReg : State <- ConstBit ($StateMod0 : word stateSz) with
-
-    Rule "getInput" :=
-      Call inputReady : Bool <- "getInputReady" ();
-      If #inputReady
-        then
-          Call b : Bit 1 <- "getInput" ();
-          Read state : State <- stateReg;
-          Write stateReg : State <- transition #state #b;
-          Retv;
-      Retv with
-
-    Rule "sendOutput" :=
-      Read state : State <- stateReg;
-      Call "sendOutput" (#state == $StateMod0 : Bool);
-      Retv with
-
-    Rule "reset" :=
+    Rule "main" :=
+      Read prevState : State <- stateReg;
       Call reset : Bool <- "reset" ();
-      If #reset
-        then
-          Write stateReg : State <- $StateMod0;
-          Retv;
+      Call input : Maybe (Bit 1) <- "getInput" ();
+      LET state : State
+        <- IF #reset
+             then $StateMod0
+             else IF #input @% "valid"
+                 then transition #prevState (#input @% "data")
+                 else #prevState;
+      Write stateReg : State <- #state;
+      Call "sendOutput" (#state == $StateMod0 : Bool);
       Retv
   }).
 

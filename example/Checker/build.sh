@@ -6,7 +6,7 @@
 # Note: you may have to manually remove the CustomExtract import from CustomExtract.hs
 
 make && \
-cd ../Kami && ./fixHaskell.sh ../FSM && cd ../FSM && \
+cd ../Kami && ./fixHaskell.sh ../Checker && cd ../Checker && \
 cp CustomExtract.bak CustomExtract.hs && \
 ghc -O2 --make -i../Kami -i../Kami/Compiler ../Kami/Compiler/CompAction.hs && \
 ../Kami/Compiler/CompAction > System.sv && \

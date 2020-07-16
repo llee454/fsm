@@ -501,6 +501,7 @@ Section ty.
       behaviorInput ((state, step) :: b) xs.
 
   (* what it means for the model to behave correctly. *)
+(*
   Theorem correct :
     forall (xs : list Input) (b : Behavior), validBehavior b -> behaviorInput b xs -> behaviorEqv xs (Fsm.execute fsm (map toAbsInput xs)) b.
   Proof.
@@ -529,21 +530,6 @@ Section ty.
           ** apply (eqvOut (state, step) Hout Hin0 
                (IHb (validBehaviorTail Hb) H3)).
              simpl.
-    
-
-  (*
-    Accepts four arguments: [absInput], an abstract input sequence;
-    [absState], an abstract machine state resulting from [absInput];
-    [modelRegs], a kami model state resulting; and [modelTrace],
-    a kami model trace that resulted in [modelRegs]; and asserts
-    that the abstract machine trace is equivalent to the given kami
-    model trace.
-  *)
-  Definition eqv
-    (absInput : list (Input fsm))
-    (absState : State fsm)
-    (modelRegs : RegsT)
-    (modelTrace : list (list FullLabel))
-    : bool := inputEqv absInput modelTrace && stateEqv absState modelRegs.
+*)
 
 End ty.

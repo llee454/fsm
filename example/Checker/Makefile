@@ -41,7 +41,7 @@ HASNATDYNLINK     := $(COQMF_HASNATDYNLINK)
 OCAMLWARN         := $(COQMF_WARN)
 
 Makefile.conf: 
-	coq_makefile -Q ../Kami/ Kami -Q ../coq-record-update/src/ RecordUpdate -Q ../Fsm/ Fsm -Q ../AbstractChecker/ AbstractChecker -Q . Checker Checker.v Correct.v -o Makefile
+	coq_makefile -Q . Checker -Q ../Kami/ Kami -Q ../coq-record-update/src/ RecordUpdate Checker.v KamiExtract.v -o Makefile
 
 # This file can be created by the user to hook into double colon rules or
 # add any other Makefile code he may need
